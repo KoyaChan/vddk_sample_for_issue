@@ -1,0 +1,17 @@
+*.user
+*.swp
+*.ncb
+*/
+!bin/
+!doc/
+doc/*
+doc/*/
+!doc/sample/
+doc/sample/*/
+!doc/sample/release/
+doc/sample/release/*
+!doc/sample/release/*.exe
+!doc/sample/release/*.pdb
+doc/sample/release/vc80.*
+!include/
+!lib/
