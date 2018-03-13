@@ -707,9 +707,9 @@ public:
 			   {
 				   printf("%d..", sec);
 			   }
-			   printf("call now\n");
 		   }
 
+			printf("call now\n");
            VixDiskLib_Close(_handle);
            printf("Disk[%d] is closed.\n", _id);
         }
