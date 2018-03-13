@@ -12,6 +12,7 @@ doc/sample/*/
 doc/sample/release/*
 !doc/sample/release/*.exe
 !doc/sample/release/*.pdb
+!doc/sample/release/*.bat
 doc/sample/release/vc80.*
 !include/
 !lib/
