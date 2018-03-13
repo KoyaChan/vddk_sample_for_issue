@@ -1,3 +1,4 @@
+@REM getinfo <vCenter host address> <vCenter user> <vCenter password>
 @set HOSTIP=%1
 @set USER=%2
 @set PASSWORD=%3
