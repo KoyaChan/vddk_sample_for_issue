@@ -12,4 +12,5 @@
 @set LIBDIR="C:\Program Files\CA\ARCserve Backup Client Agent for Windows\VDDK\Bin\VDDK64"
 
 @REM windbg -o 
-VixDiskLibSample -info -initex %CD%\VixDiskLib.cfg -host %HOSTIP% -thumb %THUMB% -port %PORT% -nfchostport %NFCHOSTPORT% -user %USER% -password %PASSWORD% -libdir %LIBDIR% -mode %MODE% -ssmoref %SNAPSHOT% -vm "moref=%VM%" %DISK1% 1> getinfo.log 2> getinfoerr.log
+VixDiskLibSample -info -initex %CD%\VixDiskLib.cfg -host %HOSTIP% -thumb %THUMB% -port %PORT% -nfchostport %NFCHOSTPORT% -user %USER% -password %PASSWORD% -libdir %LIBDIR% -mode %MODE% -ssmoref %SNAPSHOT% -vm "moref=%VM%" %DISK1%
+@REM 1> getinfo.log 2> getinfoerr.log
