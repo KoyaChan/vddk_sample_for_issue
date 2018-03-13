@@ -10,30 +10,30 @@
 
 #ifdef _WIN32
 #include <windows.h>
-#include <tchar.h>
-#include <process.h>
+//#include <tchar.h>
+//#include <process.h>
 #else
 #include <dlfcn.h>
 #include <sys/time.h>
 #endif
 
-#include <time.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+//#include <time.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <string.h>
 #include <iostream>
-#include <iomanip>
+//#include <iomanip>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <stdexcept>
-#include <algorithm>
-#include <list>
-#include <memory>
+//#include <stdexcept>
+//#include <algorithm>
+//#include <list>
+//#include <memory>
 
-#include <boost/asio.hpp>
-#include <boost/thread/thread.hpp>
-#include <boost/make_shared.hpp>
+//#include <boost/make_shared.hpp>
+//#include <boost/thread/thread.hpp>
+//#include <boost/asio.hpp>
 
 #include "vixDiskLib.h"
 
@@ -126,6 +126,7 @@ static struct {
 } appGlobals;
 
 static int ParseArguments(int argc, char* argv[]);
+#ifdef REMAIN_OTHER_THAN_DOINFO
 static void DoCreate(void);
 static void DoRedo(void);
 static void DoFill(void);
@@ -133,10 +134,14 @@ static void DoDump(void);
 static void DoReadMetadata(void);
 static void DoWriteMetadata(void);
 static void DoDumpMetadata(void);
+#endif // REMAIN_OTHER_THAN_DOINFO
 static void DoInfo(void);
+#ifdef REMAIN_OTHER_THAN_DOINFO
 static void DoTestMultiThread(void);
 static void DoClone(void);
+#endif
 static int BitCount(int number);
+#ifdef REMAIN_OTHER_THAN_DOINFO
 static void DumpBytes(const uint8 *buf, size_t n, int step);
 static void DoRWBench(bool read);
 static void DoCheckRepair(Bool repair);
@@ -144,6 +149,7 @@ static void DoAsyncIO(bool read);
 #ifdef FOR_MNTAPI
 static void DoMntApi(VixDiskLibConnection connection, const char* disk, uint32 openFlags);
 #endif
+#endif // REMAIN_OTHER_THAN_DOINFO
 
 
 #define THROW_ERROR(vixError) \
@@ -662,7 +668,7 @@ private:
 class VixDisk
 {
 public:
-    typedef boost::shared_ptr<VixDisk> Ptr;
+//    typedef boost::shared_ptr<VixDisk> Ptr;
 
     VixDiskLibHandle Handle() const { return _handle; }
     VixDisk(VixDiskLibConnection connection, const char *path, uint32 flags, int id = 0)
@@ -705,7 +711,7 @@ private:
     int _id;
 };
 
-
+#ifdef REMAIN_OTHER_THAN_DOINFO
 template <bool C, typename T, typename F>
 struct IF_THEN_ELSE;
 
@@ -1038,7 +1044,7 @@ class TaskExecutor
       boost::shared_ptr<boost::asio::io_service::work> m_work;
       std::vector<boost::shared_ptr<boost::thread> > m_threads;
 };
-
+#endif	// REMAIN_OTHER_THAM_DOINFO
 
 /*
  *--------------------------------------------------------------------------
@@ -1236,7 +1242,9 @@ main(int argc, char* argv[])
 
         if (appGlobals.command & COMMAND_INFO) {
             DoInfo();
-        } else if (appGlobals.command & COMMAND_CREATE) {
+        } 
+#ifdef REMAIN_OTHER_THAN_DOINFO
+		else if (appGlobals.command & COMMAND_CREATE) {
             DoCreate();
         } else if (appGlobals.command & COMMAND_REDO) {
             DoRedo();
@@ -1265,6 +1273,7 @@ main(int argc, char* argv[])
         } else if (appGlobals.command & COMMAND_CHECKREPAIR) {
             DoCheckRepair(appGlobals.repair);
         }
+#endif	// REMAIN_OTHER_THAN_DOINFO
 #endif
         retval = 0;
     } catch (const VixDiskLibErrWrapper& e) {
@@ -1668,7 +1677,7 @@ DoInfo(void)
        VixDiskLib_ListTransportModes() << endl;
 }
 
-
+#ifdef REMAIN_OTHER_THAN_DOINFO
 /*
  *--------------------------------------------------------------------------
  *
@@ -1916,7 +1925,7 @@ DoDump(void)
     }
 }
 
-
+#endif // REMAIN_OTHER_THAN_DOINFO
 /*
  *--------------------------------------------------------------------------
  *
@@ -1943,7 +1952,7 @@ BitCount(int number)    // IN
     }
     return bits;
 }
-
+#ifdef REMAIN_OTHER_THAN_DOINFO
 
 /*
  *----------------------------------------------------------------------
@@ -2476,6 +2485,7 @@ DoCheckRepair(Bool repair)
       throw VixDiskLibErrWrapper(err, __FILE__, __LINE__);
    }
 }
+
 #ifdef FOR_MNTAPI
 template <typename Hdl, typename CloseHdl= VixError(*)(Hdl)>
 class HdlWrap
@@ -2586,3 +2596,4 @@ static void DoMntApi(VixDiskLibConnection connection, const char* disk, uint32 o
 
 }
 #endif
+#endif // REMAIN_OTHER_THAN_DOINFO
