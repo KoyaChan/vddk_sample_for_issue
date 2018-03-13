@@ -698,6 +698,18 @@ public:
     {
         if (_handle) {
            VixDiskLib_FreeInfo(_info);
+		   printf("pending 1 minute before calling VixDiskLib_Close ...\n");
+		   int sec = 60;
+		   while(sec--)
+		   {
+			   Sleep(1000);
+			   if(sec <= 5)
+			   {
+				   printf("%d..", sec);
+			   }
+			   printf("call now\n");
+		   }
+
            VixDiskLib_Close(_handle);
            printf("Disk[%d] is closed.\n", _id);
         }
