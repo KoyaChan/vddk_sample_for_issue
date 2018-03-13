@@ -11,4 +11,5 @@
 @set PORT=443
 @set LIBDIR=C:\debugtools\vddk_sample_for_issue
 
-VixDiskLibSample -info -initex %CD%\VixDiskLib.cfg -host %HOSTIP% -thumb %THUMB% -port %PORT% -nfchostport %NFCHOSTPORT% -user %USER% -password %PASSWORD% -libdir %LIBDIR% -mode %MODE% -ssmoref %SNAPSHOT% -vm "moref=%VM%" %DISK1% 1> getinfo.log 2> getinfoerr.log
+VixDiskLibSample -info -initex %CD%\VixDiskLib.cfg -host %HOSTIP% -thumb %THUMB% -port %PORT% -nfchostport %NFCHOSTPORT% -user %USER% -password %PASSWORD% -libdir %LIBDIR% -mode %MODE% -ssmoref %SNAPSHOT% -vm "moref=%VM%" %DISK1% 
+@REM 1> getinfo.log 2> getinfoerr.log
