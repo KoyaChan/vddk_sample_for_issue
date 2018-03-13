@@ -705,8 +705,8 @@ public:
 		   while(!_kbhit());
 
 			printf("call VixDiskLib_Close now\n");
-           VixDiskLib_Close(_handle);
-           printf("Disk[%d] is closed.\n", _id);
+           VixError vixError = VixDiskLib_Close(_handle);
+		   printf("Disk[%d] is closed. vixError: %llx\n", _id, vixError);
         }
         _info = NULL;
         _handle = NULL;
