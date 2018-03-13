@@ -36,6 +36,7 @@
 //#include <boost/asio.hpp>
 
 #include "vixDiskLib.h"
+#include "conio.h"
 
 #ifdef FOR_MNTAPI
 #ifndef _WIN32
@@ -697,19 +698,13 @@ public:
     ~VixDisk()
     {
         if (_handle) {
+			char buffer[20];
            VixDiskLib_FreeInfo(_info);
-		   printf("pending 1 minute before calling VixDiskLib_Close ...\n");
-		   int sec = 60;
-		   while(sec--)
-		   {
-			   Sleep(1000);
-			   if(sec <= 5)
-			   {
-				   printf("%d..", sec);
-			   }
-		   }
+		   printf("pending before calling VixDiskLib_Close ...\n");
+		   printf("*** Press Enter when vCenter HA failover completes. : ");
+		   while(!_kbhit());
 
-			printf("call now\n");
+			printf("call VixDiskLib_Close now\n");
            VixDiskLib_Close(_handle);
            printf("Disk[%d] is closed.\n", _id);
         }
