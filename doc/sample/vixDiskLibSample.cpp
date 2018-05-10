@@ -1294,7 +1294,19 @@ main(int argc, char* argv[])
     //}
     if (appGlobals.connection != NULL) {
        VixDiskLib_Disconnect(appGlobals.connection);
+	   
+	   printf("pending before VixDiskLib_Cleanup ...\n");
+	   printf("***  Press Enter to call cleanup : ");
+	   while(!_kbhit());
+
+	   unsigned int numCleanedup = 0;
+	   unsigned int numRemaining = 0;
+	   vixError = VixDiskLib_Cleanup(&cnxParams, &numCleanedup, &numRemaining);
+	   printf("Cleanup was called and returned. ret=%d\n", vixError);
+	   printf("*** Press Enter to continue : ");
+	   while(!_kbhit());
     }
+
 #ifdef FOR_MNTAPI
     VixMntapi_Exit();
 #endif
