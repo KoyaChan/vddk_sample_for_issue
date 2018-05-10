@@ -703,6 +703,7 @@ public:
 		   printf("pending before calling VixDiskLib_Close ...\n");
 		   printf("*** Press Enter when vCenter HA failover completes. : ");
 		   while(!_kbhit());
+		   _getch();
 
 			printf("\n call VixDiskLib_Close now\n");
            VixError vixError = VixDiskLib_Close(_handle);
@@ -1304,6 +1305,7 @@ main(int argc, char* argv[])
 	   printf("pending before VixDiskLib_Cleanup ...\n");
 	   printf("***  Press Enter to call cleanup : ");
 	   while(!_kbhit());
+	   getch();
 
 	   unsigned int numCleanedup = 0;
 	   unsigned int numRemaining = 0;
@@ -1311,6 +1313,7 @@ main(int argc, char* argv[])
 	   printf("Cleanup was called and returned. ret=%d\n", vixError);
 	   printf("*** Press Enter to continue : ");
 	   while(!_kbhit());
+	   getch();
     }
 
 #ifdef FOR_MNTAPI
