@@ -706,7 +706,7 @@ public:
 
 			printf("\n call VixDiskLib_Close now\n");
            VixError vixError = VixDiskLib_Close(_handle);
-		   printf("Disk[%d] is closed. vixError: %llx\n", _id, vixError);
+		   printf("Disk[%d] is closed. vixError: %llx\n", _id, vixError);   
         }
         _info = NULL;
         _handle = NULL;
@@ -1289,9 +1289,9 @@ main(int argc, char* argv[])
        retval = 1;
     }
 
-    if (appGlobals.vmxSpec != NULL) {
-       vixError = VixDiskLib_EndAccess(&cnxParams, "Sample");
-    }
+    //if (appGlobals.vmxSpec != NULL) {
+    //   vixError = VixDiskLib_EndAccess(&cnxParams, "Sample");
+    //}
     if (appGlobals.connection != NULL) {
        VixDiskLib_Disconnect(appGlobals.connection);
     }
