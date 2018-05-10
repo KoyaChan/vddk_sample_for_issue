@@ -1294,7 +1294,9 @@ main(int argc, char* argv[])
     //}
     if (appGlobals.connection != NULL) {
        VixDiskLib_Disconnect(appGlobals.connection);
-	   
+	}
+
+	if (appGlobals.vmxSpec != NULL) {
 	   printf("calling EndAccess...\n");
 	   vixError = VixDiskLib_EndAccess(&cnxParams, "Sample");
 	   printf("returned from EndAccess\n");
