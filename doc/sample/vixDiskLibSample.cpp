@@ -1233,10 +1233,10 @@ main(int argc, char* argv[])
        DoMntApi(appGlobals.connection, appGlobals.diskPaths[0].c_str(), appGlobals.openFlags);
 #else
 
-       if (appGlobals.vmxSpec != NULL) {
-          vixError = VixDiskLib_PrepareForAccess(&cnxParams, "Sample");
-          CHECK_AND_THROW(vixError);
-       }
+       //if (appGlobals.vmxSpec != NULL) {
+       //   vixError = VixDiskLib_PrepareForAccess(&cnxParams, "Sample");
+       //   CHECK_AND_THROW(vixError);
+       //}
        if (appGlobals.ssMoRef == NULL && appGlobals.transportModes == NULL) {
           vixError = VixDiskLib_Connect(&cnxParams,
                                         &appGlobals.connection);
@@ -1298,9 +1298,9 @@ main(int argc, char* argv[])
 	}
 
 	if (appGlobals.vmxSpec != NULL) {
-	   printf("calling EndAccess...\n");
-	   vixError = VixDiskLib_EndAccess(&cnxParams, "Sample");
-	   printf("returned from EndAccess\n");
+	   //printf("calling EndAccess...\n");
+	   //vixError = VixDiskLib_EndAccess(&cnxParams, "Sample");
+	   //printf("returned from EndAccess\n");
 
 	   printf("pending before VixDiskLib_Cleanup ...\n");
 	   printf("***  Press Enter to call cleanup : ");
