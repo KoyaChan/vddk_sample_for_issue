@@ -1295,6 +1295,10 @@ main(int argc, char* argv[])
     if (appGlobals.connection != NULL) {
        VixDiskLib_Disconnect(appGlobals.connection);
 	   
+	   printf("calling EndAccess...\n");
+	   vixError = VixDiskLib_EndAccess(&cnxParams, "Sample");
+	   printf("returned from EndAccess\n");
+
 	   printf("pending before VixDiskLib_Cleanup ...\n");
 	   printf("***  Press Enter to call cleanup : ");
 	   while(!_kbhit());
